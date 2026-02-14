@@ -408,21 +408,33 @@ body {
   <div class="section-inner">
     <p class="section-label section-label-dark reveal">Get in touch</p>
     <h2 class="section-title reveal">Let's <em>connect</em></h2>
-    <p class="reveal" style="color:var(--text-muted);font-size:16px;margin-bottom:6px"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c9bea6bba2a8bbbdbab9a8aaacfbf189aea4a8a0a5e7aaa6a4">[email&#160;protected]</a></p>
+    <p class="reveal" style="color:var(--text-muted);font-size:16px;margin-bottom:6px">workartspace28@gmail.com</p>
     <p class="reveal" style="color:rgba(245,237,228,0.22);font-size:13px">Vancouver, Canada</p>
     <div class="contact-socials reveal" style="transition-delay:.1s">
       <a href="https://www.instagram.com/pinnusekhon/" target="_blank" class="contact-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>Instagram</a>
       <a href="https://www.tiktok.com/@pinnusekhon" target="_blank" class="contact-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.46V13a8.28 8.28 0 005.58 2.17V11.7a4.85 4.85 0 01-3.58-1.42V6.69h3.58z"/></svg>TikTok</a>
       <a href="https://www.imdb.com/name/nm16417024/" target="_blank" class="contact-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h2v16H3V4zm4 0h3l1.5 8L13 4h3v16h-2.5v-10l-1.5 7h-2l-1.5-7v10H7V4zm11 0h3v16h-3V4z"/></svg>IMDb</a>
-      <a href="/cdn-cgi/l/email-protection#265149544d4754525556474543141e66414b474f4a0845494b" class="contact-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 7 10-7"/></svg>Email</a>
+      <a href="mailto:workartspace28@gmail.com" class="contact-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 7 10-7"/></svg>Email</a>
     </div>
     <div class="footer reveal"><p>&copy; 2025 Pinnu Sekhon. All rights reserved.</p></div>
   </div>
 </section>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// Preloader
-setTimeout(function() { document.getElementById('preloader').classList.add('done'); }, 2500);
+<script>
+// Preloader - dismiss after 2.5s OR on click, whichever comes first
+(function() {
+  var p = document.getElementById('preloader');
+  var dismissed = false;
+  function dismiss() {
+    if (dismissed) return;
+    dismissed = true;
+    p.classList.add('done');
+  }
+  setTimeout(dismiss, 2500);
+  p.addEventListener('click', dismiss);
+  // Failsafe - always dismiss by 5s no matter what
+  setTimeout(dismiss, 5000);
+})();
 
 // Nav scroll effect
 window.addEventListener('scroll', function() {
@@ -473,4 +485,13 @@ document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el)
 })();
 
 // Smooth scroll for nav links
-document.quer
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    var target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
