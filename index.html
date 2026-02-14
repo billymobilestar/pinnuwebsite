@@ -3,495 +3,235 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pinnu Sekhon - Actress &amp; Artist</title>
+<title>Pinnu Sekhon</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Outfit', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  background: #0D0A0B;
-  color: #F5EDE4;
-  overflow-x: hidden;
-}
-::selection { background: #B76E79; color: #0D0A0B; }
-
-:root {
-  --bg: #0D0A0B;
-  --bg-warm: #1A1412;
-  --bg-cream: #FBF5EF;
-  --text: #F5EDE4;
-  --text-muted: rgba(245,237,228,0.5);
-  --text-dark: #2D1F1A;
-  --rose: #B76E79;
-  --rose-light: #D4A0A7;
-  --rose-dark: #8B4F56;
-}
-
-/* ══════ PRELOADER ══════ */
-.preloader {
-  position: fixed; inset: 0; z-index: 10000;
-  background: #0D0A0B;
-  display: flex; align-items: center; justify-content: center; flex-direction: column;
-  transition: opacity .8s, visibility .8s;
-}
-.preloader.done { opacity: 0; visibility: hidden; pointer-events: none; }
-.preloader-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  font-weight: 300; color: var(--text);
-}
-.preloader-name span {
-  display: inline-block; opacity: 0; transform: translateY(100%);
-  animation: letterUp .6s cubic-bezier(.22,1,.36,1) forwards;
-}
-@keyframes letterUp { to { opacity: 1; transform: translateY(0); } }
-.preloader-line {
-  width: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--rose), transparent);
-  margin-top: 20px;
-  animation: lineGrow 1.2s .6s cubic-bezier(.22,1,.36,1) forwards;
-}
-@keyframes lineGrow { to { width: 200px; } }
-.preloader-tag {
-  font-size: 12px; letter-spacing: .3em; text-transform: uppercase;
-  color: rgba(245,237,228,0.3); margin-top: 14px;
-  opacity: 0; animation: fadeIn .5s .9s forwards;
-}
-@keyframes fadeIn { to { opacity: 1; } }
-@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-
-/* ══════ NAV ══════ */
-.nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
-  padding: 18px 28px; transition: all .5s;
-}
-.nav.scrolled {
-  background: rgba(13,10,11,.92); backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(183,110,121,0.06);
-}
-.nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
-.nav-brand {
-  font-family: 'Cormorant Garamond', serif; font-size: 20px;
-  font-weight: 500; color: var(--text); text-decoration: none; transition: color .3s;
-}
-.nav-brand:hover { color: var(--rose-light); }
-.nav-links { display: flex; gap: 28px; align-items: center; }
-.nav-links a {
-  font-size: 12px; color: var(--text-muted); text-decoration: none;
-  letter-spacing: .18em; text-transform: uppercase; transition: color .3s;
-  position: relative;
-}
-.nav-links a:hover { color: var(--rose-light); }
-.nav-links a::after {
-  content: ''; position: absolute; bottom: -4px; left: 0;
-  width: 0; height: 1px; background: var(--rose-light); transition: width .3s;
-}
-.nav-links a:hover::after { width: 100%; }
-.nav-social { display: flex; gap: 14px; margin-left: 20px; padding-left: 20px; border-left: 1px solid rgba(245,237,228,0.08); }
-.nav-social a { color: var(--text-muted); transition: all .3s; display: flex; align-items: center; }
-.nav-social a:hover { color: var(--rose-light); transform: translateY(-2px); }
-
-/* ══════ HERO ══════ */
-.hero {
-  min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
-  position: relative; overflow: hidden;
-}
-.hero-content {
-  display: flex; flex-direction: column; justify-content: center;
-  padding: 100px 60px 60px 80px; position: relative; z-index: 2;
-}
-.hero-socials { display: flex; gap: 12px; margin-bottom: 36px; flex-wrap: wrap; }
-.hero-socials a {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 8px 18px; border-radius: 50px;
-  border: 1px solid rgba(183,110,121,0.2);
-  color: var(--rose-light); font-size: 13px; text-decoration: none;
-  transition: all .4s;
-}
-.hero-socials a:hover {
-  background: rgba(183,110,121,0.12); border-color: var(--rose-light);
-  transform: translateY(-3px); box-shadow: 0 8px 24px rgba(183,110,121,0.12);
-}
-.hero h1 { font-family: 'Cormorant Garamond', serif; font-weight: 300; line-height: .92; margin-bottom: 28px; }
-.hero h1 .line { display: block; overflow: hidden; }
-.hero h1 .first { font-size: clamp(3.5rem,7vw,6.5rem); color: var(--text); }
-.hero h1 .last { font-size: clamp(3.5rem,7vw,6.5rem); font-style: italic; color: var(--rose); }
-.hero-tag { font-size: 13px; color: var(--text-muted); letter-spacing: .25em; text-transform: uppercase; margin-bottom: 20px; }
-.hero-quote {
-  font-family: 'Cormorant Garamond', serif; font-style: italic;
-  color: rgba(245,237,228,0.28); font-size: 17px; max-width: 380px; line-height: 1.6;
-}
-.hero-img-wrap {
-  position: relative; overflow: hidden;
-}
-.hero-img-wrap img {
-  width: 100%; height: 100vh; object-fit: cover; object-position: center top; display: block;
-}
-.hero-img-overlay {
-  position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(to right, var(--bg) 0%, transparent 35%), linear-gradient(to top, var(--bg) 0%, transparent 20%);
-}
-
-.anim { opacity: 0; animation: fadeInUp .9s cubic-bezier(.22,1,.36,1) forwards; }
-
-/* ══════ SECTIONS ══════ */
-.section { padding: 110px 28px; }
-.section-dark { background: var(--bg); }
-.section-warm { background: var(--bg-warm); }
-.section-cream { background: var(--bg-cream); color: var(--text-dark); }
-.section-inner { max-width: 1100px; margin: 0 auto; }
-.section-label { font-size: 11px; text-transform: uppercase; letter-spacing: .22em; margin-bottom: 16px; }
-.section-label-dark { color: var(--rose); }
-.section-label-light { color: var(--rose-dark); }
-.section-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.2rem,5vw,3.4rem); line-height: 1.15; margin-bottom: 28px; font-weight: 400;
-}
-.section-title em { font-style: italic; color: var(--rose); }
-.section-title-light em { color: var(--rose-dark); }
-
-.reveal { opacity: 0; transform: translateY(30px); transition: all .8s cubic-bezier(.22,1,.36,1); }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-
-/* ══════ ABOUT ══════ */
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 52px; align-items: start; }
-.about-text { font-size: 16px; line-height: 1.8; color: rgba(45,31,26,0.65); }
-.disciplines { display: flex; flex-direction: column; gap: 16px; }
-.discipline {
-  display: flex; gap: 16px; padding: 22px; border-radius: 14px;
-  border: 1px solid rgba(183,110,121,0.08); background: rgba(183,110,121,0.02);
-  transition: all .4s; cursor: default;
-}
-.discipline:hover { border-color: rgba(183,110,121,0.25); transform: translateX(6px); box-shadow: 0 8px 24px rgba(183,110,121,0.04); }
-.discipline-icon {
-  font-size: 24px; flex-shrink: 0; width: 44px; height: 44px;
-  display: flex; align-items: center; justify-content: center; border-radius: 12px;
-  background: rgba(183,110,121,0.06);
-}
-.discipline h3 { font-family: 'Cormorant Garamond', serif; font-size: 18px; margin-bottom: 4px; font-weight: 500; color: var(--text-dark); }
-.discipline p { font-size: 13px; color: rgba(45,31,26,0.45); line-height: 1.5; }
-
-/* ══════ FILMS ══════ */
-.films-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 52px; }
-.film-card {
-  border-radius: 20px; overflow: hidden;
-  border: 1px solid rgba(183,110,121,0.08); background: rgba(183,110,121,0.02);
-  transition: all .4s; text-decoration: none; color: inherit;
-}
-.film-card:hover { border-color: rgba(183,110,121,0.2); box-shadow: 0 24px 60px rgba(183,110,121,0.08); }
-.film-poster { aspect-ratio: 4/5; overflow: hidden; background: var(--bg); }
-.film-poster img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.film-body { padding: 28px; }
-.film-body h3 {
-  font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 500;
-  margin-bottom: 8px; color: var(--text); transition: color .3s;
-}
-.film-card:hover .film-body h3 { color: var(--rose-light); }
-.film-body .year { font-size: 13px; color: var(--rose-light); margin-bottom: 12px; }
-.film-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
-.film-tag { padding: 4px 12px; border-radius: 50px; font-size: 11px; border: 1px solid rgba(183,110,121,0.15); color: var(--rose-light); }
-.film-body p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
-.film-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; font-size: 13px; color: var(--rose-light); transition: all .3s; }
-.film-card:hover .film-link { color: var(--rose); transform: translateX(4px); }
-
-/* ══════ GALLERY ══════ */
-.gallery-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 300px; gap: 10px; margin-top: 52px;
-}
-.gallery-item {
-  border-radius: 12px; overflow: hidden; position: relative;
-  cursor: pointer; transition: transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s;
-}
-.gallery-item:hover { transform: scale(1.015); box-shadow: 0 20px 50px rgba(0,0,0,0.25); }
-.gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.gallery-item:hover img { transform: scale(1.08); transition: transform .7s cubic-bezier(.22,1,.36,1); }
-.gallery-item.tall { grid-row: span 2; }
-.gallery-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(13,10,11,.6), transparent 60%);
-  opacity: 0; transition: opacity .4s;
-  display: flex; align-items: flex-end; padding: 20px;
-}
-.gallery-item:hover .gallery-overlay { opacity: 1; }
-.gallery-overlay span {
-  font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--text);
-  font-style: italic; opacity: .8;
-}
-
-/* ══════ LIGHTBOX ══════ */
-.lightbox {
-  position: fixed; inset: 0; background: rgba(13,10,11,.95); z-index: 100;
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; pointer-events: none; transition: opacity .4s; backdrop-filter: blur(20px);
-}
-.lightbox.active { opacity: 1; pointer-events: all; }
-.lightbox img { max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: 8px; display: block; }
-.lightbox-close {
-  position: absolute; top: 28px; right: 28px; width: 48px; height: 48px;
-  border-radius: 50%; border: 1px solid rgba(245,237,228,0.15);
-  background: transparent; color: var(--text); font-size: 20px;
-  cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .3s;
-}
-.lightbox-close:hover { background: rgba(183,110,121,0.15); border-color: var(--rose); }
-.lightbox-nav {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  width: 48px; height: 48px; border-radius: 50%;
-  border: 1px solid rgba(245,237,228,0.1); background: transparent;
-  color: var(--text); font-size: 18px; cursor: pointer;
-  display: flex; align-items: center; justify-content: center; transition: all .3s;
-}
-.lightbox-nav:hover { background: rgba(183,110,121,0.15); border-color: var(--rose); }
-.lightbox-prev { left: 24px; }
-.lightbox-next { right: 24px; }
-
-/* ══════ CONTACT ══════ */
-.contact { text-align: center; }
-.contact-socials { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 36px; }
-.contact-btn {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 14px 28px; border-radius: 50px;
-  border: 1px solid rgba(183,110,121,0.15);
-  color: var(--rose-light); font-size: 14px; text-decoration: none; transition: all .4s;
-}
-.contact-btn:hover {
-  background: rgba(183,110,121,0.1); border-color: var(--rose-light);
-  transform: translateY(-3px); box-shadow: 0 12px 32px rgba(183,110,121,0.1);
-}
-.contact-btn svg { width: 18px; height: 18px; }
-.footer { margin-top: 80px; padding-top: 28px; border-top: 1px solid rgba(245,237,228,0.04); }
-.footer p { font-size: 11px; opacity: .18; }
-
-/* ══════ RESPONSIVE ══════ */
-@media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; min-height: auto; }
-  .hero-content { padding: 120px 28px 40px; text-align: center; align-items: center; }
-  .hero-socials { justify-content: center; }
-  .hero-img-wrap img { height: 55vh; }
-  .about-grid { grid-template-columns: 1fr; gap: 32px; }
-  .films-grid { grid-template-columns: 1fr; }
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 220px; }
-  .nav-links .nav-text { display: none; }
-  .nav-social { margin-left: 0; padding-left: 0; border-left: none; }
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;-webkit-font-smoothing:antialiased;background:#0D0A0B;color:#F5EDE4;overflow-x:hidden}
+::selection{background:#B76E79;color:#0D0A0B}
+img{display:block;max-width:100%}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+#butterfly-canvas{position:fixed;inset:0;pointer-events:none;z-index:9997}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+@keyframes letterUp{from{opacity:0;transform:translateY(100%)}to{opacity:1;transform:translateY(0)}}
+@keyframes lineGrow{to{width:200px}}
+.anim-fiu{animation:fadeInUp .9s cubic-bezier(.22,1,.36,1) forwards;opacity:0}
+.reveal{opacity:0;transform:translateY(30px);transition:all .8s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-scale{opacity:0;transform:scale(.94);transition:all .7s cubic-bezier(.22,1,.36,1)}
+.reveal-scale.visible{opacity:1;transform:scale(1)}
+.img-reveal{clip-path:inset(0 0 100% 0);transition:clip-path 1s cubic-bezier(.22,1,.36,1)}
+.img-reveal.visible{clip-path:inset(0 0 0 0)}
+:root{--bg:#0D0A0B;--bg-warm:#1A1412;--bg-cream:#FBF5EF;--text:#F5EDE4;--text-muted:rgba(245,237,228,0.5);--text-dark:#2D1F1A;--rose:#B76E79;--rose-light:#D4A0A7;--rose-dark:#8B4F56}
+.preloader{position:fixed;inset:0;z-index:10000;background:#0D0A0B;display:flex;align-items:center;justify-content:center;flex-direction:column;transition:opacity .6s,visibility .6s}
+.preloader.done{opacity:0;visibility:hidden;pointer-events:none}
+.preloader-name{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:300;color:#F5EDE4}
+.preloader-name span{display:inline-block;opacity:0;transform:translateY(100%);animation:letterUp .6s cubic-bezier(.22,1,.36,1) forwards}
+.preloader-line{width:0;height:1px;background:linear-gradient(90deg,transparent,#B76E79,transparent);margin-top:20px;animation:lineGrow 1.2s .6s cubic-bezier(.22,1,.36,1) forwards}
+.preloader-tag{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:rgba(245,237,228,0.3);margin-top:14px;opacity:0;animation:fadeIn .5s .9s forwards}
+.cursor-dot{position:fixed;width:12px;height:12px;background:#B76E79;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s,height .3s,background .3s,opacity .3s;mix-blend-mode:difference;opacity:0}
+.cursor-dot.visible{opacity:1}
+.cursor-dot.hover{width:40px;height:40px;background:rgba(183,110,121,0.25);mix-blend-mode:normal}
+.cursor-dot.click{width:8px;height:8px}
+body,a,button{cursor:none!important}
+@keyframes burstButterfly{0%{opacity:1;transform:translate(0,0) scale(1) rotate(0deg)}100%{opacity:0;transform:translate(var(--bx),var(--by)) scale(0.3) rotate(var(--br))}}
+.burst-butterfly{position:fixed;pointer-events:none;z-index:9996;animation:burstButterfly 2.5s cubic-bezier(.22,1,.36,1) forwards}
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;padding:18px 28px;transition:all .5s}
+.nav.scrolled{background:rgba(13,10,11,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(183,110,121,0.06)}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--text);text-decoration:none;transition:color .3s}
+.nav-brand:hover{color:var(--rose-light)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:12px;color:var(--text-muted);text-decoration:none;letter-spacing:.18em;text-transform:uppercase;transition:color .3s;position:relative}
+.nav-links a:hover{color:var(--rose-light)}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--rose-light);transition:width .3s}
+.nav-links a:hover::after{width:100%}
+.nav-social{display:flex;gap:14px;margin-left:20px;padding-left:20px;border-left:1px solid rgba(245,237,228,0.08)}
+.nav-social a{color:var(--text-muted);transition:all .3s;display:flex;align-items:center}
+.nav-social a:hover{color:var(--rose-light);transform:translateY(-2px)}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden}
+.hero-content{display:flex;flex-direction:column;justify-content:center;padding:100px 60px 60px 80px;position:relative;z-index:2}
+.hero-socials{display:flex;gap:12px;margin-bottom:36px;flex-wrap:wrap}
+.hero-socials a{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:50px;border:1px solid rgba(183,110,121,0.2);color:var(--rose-light);font-size:13px;text-decoration:none;transition:all .4s}
+.hero-socials a:hover{background:rgba(183,110,121,0.12);border-color:var(--rose-light);transform:translateY(-3px);box-shadow:0 8px 24px rgba(183,110,121,0.12)}
+.hero h1{font-family:'Cormorant Garamond',serif;font-weight:300;line-height:.92;margin-bottom:28px}
+.hero h1 .line{display:block;overflow:hidden}
+.hero h1 .first{font-size:clamp(3.5rem,7vw,6.5rem);color:var(--text)}
+.hero h1 .last{font-size:clamp(3.5rem,7vw,6.5rem);font-style:italic;color:var(--rose)}
+.hero-tag{font-size:13px;color:var(--text-muted);letter-spacing:.25em;text-transform:uppercase;margin-bottom:20px}
+.hero-quote{font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(245,237,228,0.28);font-size:17px;max-width:380px;line-height:1.6}
+.hero-img-wrap{position:relative;overflow:hidden}
+.hero-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.hero-img-overlay{position:absolute;inset:0;background:linear-gradient(to right,var(--bg) 0%,transparent 35%),linear-gradient(to top,var(--bg) 0%,transparent 20%);pointer-events:none}
+.section{padding:110px 28px}
+.section-dark{background:var(--bg)}.section-warm{background:var(--bg-warm)}.section-cream{background:var(--bg-cream);color:var(--text-dark)}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-label{font-size:11px;text-transform:uppercase;letter-spacing:.22em;margin-bottom:16px}
+.section-label-dark{color:var(--rose)}.section-label-light{color:var(--rose-dark)}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.15;margin-bottom:28px;font-weight:400}
+.section-title em{font-style:italic;color:var(--rose)}
+.section-title-light em{color:var(--rose-dark)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:52px;align-items:start}
+.about-text{font-size:16px;line-height:1.8;color:rgba(45,31,26,0.65)}
+.disciplines{display:flex;flex-direction:column;gap:16px}
+.discipline{display:flex;gap:16px;padding:22px;border-radius:14px;border:1px solid rgba(183,110,121,0.08);background:rgba(183,110,121,0.02);transition:all .4s cubic-bezier(.22,1,.36,1);cursor:default}
+.discipline:hover{border-color:rgba(183,110,121,0.25);transform:translateX(6px);box-shadow:0 8px 24px rgba(183,110,121,0.04)}
+.discipline-icon{font-size:24px;flex-shrink:0;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:rgba(183,110,121,0.06)}
+.discipline h3{font-family:'Cormorant Garamond',serif;font-size:18px;margin-bottom:4px;font-weight:500;color:var(--text-dark)}
+.discipline p{font-size:13px;color:rgba(45,31,26,0.45);line-height:1.5}
+.films-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:52px}
+.film-card{border-radius:20px;overflow:hidden;border:1px solid rgba(183,110,121,0.08);background:rgba(183,110,121,0.02);transition:all .4s;text-decoration:none;color:inherit}
+.film-card:hover{border-color:rgba(183,110,121,0.2);box-shadow:0 24px 60px rgba(183,110,121,0.08)}
+.film-poster{aspect-ratio:4/5;position:relative;overflow:hidden;background:var(--bg)}
+.film-poster img{width:100%;height:100%;object-fit:cover}
+.film-poster::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(13,10,11,.7) 0%,transparent 50%)}
+.film-body{padding:28px}
+.film-body h3{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:500;margin-bottom:8px;color:var(--text);transition:color .3s}
+.film-card:hover .film-body h3{color:var(--rose-light)}
+.film-body .year{font-size:13px;color:var(--rose-light);margin-bottom:12px}
+.film-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.film-tag{padding:4px 12px;border-radius:50px;font-size:11px;border:1px solid rgba(183,110,121,0.15);color:var(--rose-light)}
+.film-body p{font-size:13px;color:var(--text-muted);line-height:1.6}
+.film-link{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:13px;color:var(--rose-light);transition:all .3s}
+.film-card:hover .film-link{color:var(--rose);transform:translateX(4px)}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:300px;gap:10px;margin-top:52px}
+.gallery-item{border-radius:12px;overflow:hidden;position:relative;cursor:pointer;transition:transform .5s cubic-bezier(.22,1,.36,1),box-shadow .5s}
+.gallery-item:hover{transform:scale(1.015);box-shadow:0 20px 50px rgba(0,0,0,0.25)}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.22,1,.36,1)}
+.gallery-item:hover img{transform:scale(1.08)}
+.gallery-item.tall{grid-row:span 2}
+.gallery-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,10,11,.6),transparent 60%);opacity:0;transition:opacity .4s;display:flex;align-items:flex-end;padding:20px}
+.gallery-item:hover .gallery-overlay{opacity:1}
+.gallery-overlay span{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--text);font-style:italic;opacity:.8}
+.lightbox{position:fixed;inset:0;background:rgba(13,10,11,.95);z-index:100;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .4s;backdrop-filter:blur(20px)}
+.lightbox.active{opacity:1;pointer-events:all}
+.lightbox img{max-width:90vw;max-height:85vh;object-fit:contain;border-radius:8px;animation:scaleIn .5s ease forwards}
+.lightbox-close{position:absolute;top:28px;right:28px;width:48px;height:48px;border-radius:50%;border:1px solid rgba(245,237,228,0.15);background:transparent;color:var(--text);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s}
+.lightbox-close:hover{background:rgba(183,110,121,0.15);border-color:var(--rose)}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:1px solid rgba(245,237,228,0.1);background:transparent;color:var(--text);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s}
+.lightbox-nav:hover{background:rgba(183,110,121,0.15);border-color:var(--rose)}
+.lightbox-prev{left:24px}.lightbox-next{right:24px}
+.contact{text-align:center}
+.contact-socials{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:36px}
+.contact-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:50px;border:1px solid rgba(183,110,121,0.15);color:var(--rose-light);font-size:14px;text-decoration:none;transition:all .4s}
+.contact-btn:hover{background:rgba(183,110,121,0.1);border-color:var(--rose-light);transform:translateY(-3px);box-shadow:0 12px 32px rgba(183,110,121,0.1)}
+.contact-btn svg{width:18px;height:18px}
+.footer{margin-top:80px;padding-top:28px;border-top:1px solid rgba(245,237,228,0.04)}
+.footer p{font-size:11px;opacity:.18}
+.magnetic{transition:transform .3s cubic-bezier(.22,1,.36,1)}
+@media(max-width:900px){
+.hero{grid-template-columns:1fr;min-height:auto}
+.hero-content{padding:120px 28px 40px;text-align:center;align-items:center}
+.hero-socials{justify-content:center}
+.hero-img-wrap{height:55vh}
+.hero-img-overlay{background:linear-gradient(to top,var(--bg) 0%,transparent 25%)!important}
+.about-grid{grid-template-columns:1fr;gap:32px}
+.films-grid{grid-template-columns:1fr}
+.gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:220px}
+.nav-links .nav-text{display:none}
+.nav-social{margin-left:0;padding-left:0;border-left:none}
+.cursor-dot{display:none!important}
+body,a,button{cursor:auto!important}
 }
 </style>
 </head>
 <body>
+<div class="preloader" id="preloader"><div class="preloader-name"><span style="animation-delay:0s">P</span><span style="animation-delay:.06s">i</span><span style="animation-delay:.12s">n</span><span style="animation-delay:.18s">n</span><span style="animation-delay:.24s">u</span><span style="animation-delay:.36s">&nbsp;</span><span style="animation-delay:.42s">S</span><span style="animation-delay:.48s">e</span><span style="animation-delay:.54s">k</span><span style="animation-delay:.6s">h</span><span style="animation-delay:.66s">o</span><span style="animation-delay:.72s">n</span></div><div class="preloader-line"></div><p class="preloader-tag">Actress &middot; Artist</p></div>
+<div class="cursor-dot" id="cursorDot"></div>
+<canvas id="butterfly-canvas"></canvas>
+<div class="lightbox" id="lightbox"><button class="lightbox-close" id="lb-close">&times;</button><button class="lightbox-nav lightbox-prev" id="lb-prev">&lsaquo;</button><button class="lightbox-nav lightbox-next" id="lb-next">&rsaquo;</button><img id="lb-img" src="" alt=""></div>
 
-<!-- PRELOADER -->
-<div class="preloader" id="preloader">
-  <div class="preloader-name">
-    <span style="animation-delay:0s">P</span><span style="animation-delay:.06s">i</span><span style="animation-delay:.12s">n</span><span style="animation-delay:.18s">n</span><span style="animation-delay:.24s">u</span><span style="animation-delay:.36s">&nbsp;</span><span style="animation-delay:.42s">S</span><span style="animation-delay:.48s">e</span><span style="animation-delay:.54s">k</span><span style="animation-delay:.6s">h</span><span style="animation-delay:.66s">o</span><span style="animation-delay:.72s">n</span>
-  </div>
-  <div class="preloader-line"></div>
-  <p class="preloader-tag">Actress &middot; Artist</p>
-</div>
+<nav class="nav" id="mainNav"><div class="nav-inner">
+<a href="#" class="nav-brand magnetic">Pinnu Sekhon</a>
+<div class="nav-links">
+<span class="nav-text"><a href="#about">About</a></span><span class="nav-text"><a href="#work">Work</a></span><span class="nav-text"><a href="#gallery">Gallery</a></span><span class="nav-text"><a href="#contact">Contact</a></span>
+<div class="nav-social">
+<a href="https://www.instagram.com/pinnusekhon/" target="_blank" class="magnetic" title="Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+<a href="https://www.tiktok.com/@pinnusekhon" target="_blank" class="magnetic" title="TikTok"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.46V13a8.28 8.28 0 005.58 2.17V11.7a4.85 4.85 0 01-3.58-1.42V6.69h3.58z"/></svg></a>
+<a href="https://www.imdb.com/name/nm16417024/" target="_blank" class="magnetic" title="IMDb"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M3 4h2v16H3V4zm4 0h3l1.5 8L13 4h3v16h-2.5v-10l-1.5 7h-2l-1.5-7v10H7V4zm11 0h3v16h-3V4z"/></svg></a>
+</div></div></div></nav>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
-  <button class="lightbox-close" id="lb-close">&times;</button>
-  <button class="lightbox-nav lightbox-prev" id="lb-prev">&lsaquo;</button>
-  <button class="lightbox-nav lightbox-next" id="lb-next">&rsaquo;</button>
-  <img id="lb-img" src="" alt="">
-</div>
-
-<!-- NAV -->
-<nav class="nav" id="mainNav">
-  <div class="nav-inner">
-    <a href="#" class="nav-brand">Pinnu Sekhon</a>
-    <div class="nav-links">
-      <span class="nav-text"><a href="#about">About</a></span>
-      <span class="nav-text"><a href="#work">Work</a></span>
-      <span class="nav-text"><a href="#gallery">Gallery</a></span>
-      <span class="nav-text"><a href="#contact">Contact</a></span>
-      <div class="nav-social">
-        <a href="https://www.instagram.com/pinnusekhon/" target="_blank" title="Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
-        <a href="https://www.tiktok.com/@pinnusekhon" target="_blank" title="TikTok"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.46V13a8.28 8.28 0 005.58 2.17V11.7a4.85 4.85 0 01-3.58-1.42V6.69h3.58z"/></svg></a>
-        <a href="https://www.imdb.com/name/nm16417024/" target="_blank" title="IMDb"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M3 4h2v16H3V4zm4 0h3l1.5 8L13 4h3v16h-2.5v-10l-1.5 7h-2l-1.5-7v10H7V4zm11 0h3v16h-3V4z"/></svg></a>
-      </div>
-    </div>
-  </div>
-</nav>
-
-<!-- HERO -->
 <section class="hero" id="hero">
-  <div class="hero-content">
-    <div class="hero-socials anim" style="animation-delay:.3s">
-      <a href="https://www.instagram.com/pinnusekhon/" target="_blank"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/></svg> Instagram</a>
-      <a href="https://www.imdb.com/name/nm16417024/" target="_blank"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 4h2v16H3V4zm4 0h3l1.5 8L13 4h3v16h-2.5v-10l-1.5 7h-2l-1.5-7v10H7V4zm11 0h3v16h-3V4z"/></svg> IMDb</a>
-      <a href="https://www.tiktok.com/@pinnusekhon" target="_blank"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.46V13a8.28 8.28 0 005.58 2.17V11.7a4.85 4.85 0 01-3.58-1.42V6.69h3.58z"/></svg> TikTok</a>
-    </div>
-    <h1>
-      <div class="line"><span class="first anim" style="animation-delay:.5s">Pinnu</span></div>
-      <div class="line"><span class="last anim" style="animation-delay:.65s">Sekhon</span></div>
-    </h1>
-    <p class="hero-tag anim" style="animation-delay:.8s">Actress &middot; Artist</p>
-    <p class="hero-quote anim" style="animation-delay:1s">&ldquo;You know who you are and what you want&rdquo;</p>
-  </div>
-  <div class="hero-img-wrap">
-    <img src="images/hero.jpg" alt="Pinnu Sekhon">
-    <div class="hero-img-overlay"></div>
-  </div>
+<div class="hero-content">
+<div class="hero-socials anim-fiu" style="animation-delay:.3s">
+<a href="https://www.instagram.com/pinnusekhon/" target="_blank" class="magnetic"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/></svg> Instagram</a>
+<a href="https://www.imdb.com/name/nm16417024/" target="_blank" class="magnetic"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M3 4h2v16H3V4zm4 0h3l1.5 8L13 4h3v16h-2.5v-10l-1.5 7h-2l-1.5-7v10H7V4zm11 0h3v16h-3V4z"/></svg> IMDb</a>
+<a href="https://www.tiktok.com/@pinnusekhon" target="_blank" class="magnetic"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.46V13a8.28 8.28 0 005.58 2.17V11.7a4.85 4.85 0 01-3.58-1.42V6.69h3.58z"/></svg> TikTok</a>
+</div>
+<h1><div class="line"><span class="first anim-fiu" style="animation-delay:.5s">Pinnu</span></div><div class="line"><span class="last anim-fiu" style="animation-delay:.65s">Sekhon</span></div></h1>
+<p class="hero-tag anim-fiu" style="animation-delay:.8s">Actress &middot; Artist</p>
+<p class="hero-quote anim-fiu" style="animation-delay:1s">&ldquo;You know who you are and what you want&rdquo;</p>
+</div>
+<div class="hero-img-wrap"><img src="images/hero.jpg" alt="Pinnu Sekhon" id="hero-img"><div class="hero-img-overlay"></div></div>
 </section>
 
-<!-- ABOUT -->
-<section class="section section-cream" id="about">
-  <div class="section-inner">
-    <p class="section-label section-label-light reveal">About</p>
-    <h2 class="section-title section-title-light reveal">A storyteller across <em>every medium</em></h2>
-    <div class="about-grid">
-      <div class="about-text reveal" style="transition-delay:.1s">
-        <p style="margin-bottom:16px">Pinnu Sekhon is a multifaceted creative based in Vancouver, Canada. An artist at heart, she brings precision and emotional depth to every role she takes on.</p>
-        <p>Known for her work in Punjabi cinema alongside artists like Amrinder Gill and Hardeep Grewal, Pinnu continues to push boundaries across disciplines, telling stories that resonate with authenticity and cultural richness.</p>
-      </div>
-      <div class="disciplines">
-        <div class="discipline reveal" style="transition-delay:.2s"><div class="discipline-icon">🎬</div><div><h3>Acting</h3><p>Bringing characters to life in Punjabi cinema with emotional depth.</p></div></div>
-        <div class="discipline reveal" style="transition-delay:.3s"><div class="discipline-icon">🎨</div><div><h3>Visual Art</h3><p>Exploring identity, culture, and the beauty in everyday moments.</p></div></div>
-        <div class="discipline reveal" style="transition-delay:.4s"><div class="discipline-icon">📸</div><div><h3>Modeling</h3><p>A natural ability to embody diverse styles and moods.</p></div></div>
-      </div>
-    </div>
-  </div>
-</section>
+<section class="section section-cream" id="about"><div class="section-inner">
+<p class="section-label section-label-light reveal">About</p>
+<h2 class="section-title section-title-light reveal">A storyteller across <em>every medium</em></h2>
+<div class="about-grid">
+<div class="about-text reveal" style="transition-delay:.1s"><p style="margin-bottom:16px">Pinnu Sekhon is a multifaceted creative based in Vancouver, Canada. An artist at heart, she brings precision and emotional depth to every role she takes on.</p><p>Known for her work in Punjabi cinema alongside artists like Amrinder Gill and Hardeep Grewal, Pinnu continues to push boundaries across disciplines, telling stories that resonate with authenticity and cultural richness.</p></div>
+<div class="disciplines">
+<div class="discipline reveal" style="transition-delay:.2s"><div class="discipline-icon">🎬</div><div><h3>Acting</h3><p>Bringing characters to life in Punjabi cinema with emotional depth.</p></div></div>
+<div class="discipline reveal" style="transition-delay:.3s"><div class="discipline-icon">🎨</div><div><h3>Visual Art</h3><p>Exploring identity, culture, and the beauty in everyday moments.</p></div></div>
+<div class="discipline reveal" style="transition-delay:.4s"><div class="discipline-icon">📸</div><div><h3>Modeling</h3><p>A natural ability to embody diverse styles and moods.</p></div></div>
+</div></div></div></section>
 
-<!-- FILMOGRAPHY -->
-<section class="section section-dark" id="work">
-  <div class="section-inner">
-    <p class="section-label section-label-dark reveal">Filmography</p>
-    <h2 class="section-title reveal">Featured <em>Work</em></h2>
-    <div class="films-grid">
-      <a href="https://www.imdb.com/title/tt35684679/" target="_blank" class="film-card reveal" style="transition-delay:.1s">
-        <div class="film-poster"><img src="images/poster-six-each.jpg" alt="Six Each" loading="lazy"></div>
-        <div class="film-body">
-          <h3>Six Each</h3>
-          <p class="year">2025 &middot; Feature Film</p>
-          <div class="film-tags"><span class="film-tag">Punjabi</span><span class="film-tag">Dir. Garry Khatrao</span></div>
-          <p>A gripping courtroom drama inspired by true events.</p>
-          <span class="film-link">View on IMDb &rarr;</span>
-        </div>
-      </a>
-      <a href="https://www.imdb.com/title/tt27736430/" target="_blank" class="film-card reveal" style="transition-delay:.2s">
-        <div class="film-poster"><img src="images/poster-daaru.jpg" alt="Daaru Na Peenda Hove" loading="lazy"></div>
-        <div class="film-body">
-          <h3>Daaru Na Peenda Hove</h3>
-          <p class="year">2024 &middot; Feature Film</p>
-          <div class="film-tags"><span class="film-tag">Punjabi</span><span class="film-tag">Dir. Rajiv Dhingra</span></div>
-          <p>A heartfelt comedy-drama starring Amrinder Gill.</p>
-          <span class="film-link">View on IMDb &rarr;</span>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
+<section class="section section-dark" id="work"><div class="section-inner">
+<p class="section-label section-label-dark reveal">Filmography</p>
+<h2 class="section-title reveal">Featured <em>Work</em></h2>
+<div class="films-grid">
+<a href="https://www.imdb.com/title/tt35684679/" target="_blank" class="film-card reveal-scale" style="transition-delay:.1s" data-tilt>
+<div class="film-poster"><img src="images/poster-six-each.jpg" alt="Six Each"></div>
+<div class="film-body"><h3>Six Each</h3><p class="year">2025 &middot; Feature Film</p><div class="film-tags"><span class="film-tag">Punjabi</span><span class="film-tag">Dir. Garry Khatrao</span></div><p>A gripping courtroom drama inspired by true events.</p><span class="film-link">View on IMDb &rarr;</span></div>
+</a>
+<a href="https://www.imdb.com/title/tt27736430/" target="_blank" class="film-card reveal-scale" style="transition-delay:.2s" data-tilt>
+<div class="film-poster"><img src="images/poster-daaru.jpg" alt="Daaru Na Peenda Hove"></div>
+<div class="film-body"><h3>Daaru Na Peenda Hove</h3><p class="year">2024 &middot; Feature Film</p><div class="film-tags"><span class="film-tag">Punjabi</span><span class="film-tag">Dir. Rajiv Dhingra</span></div><p>A heartfelt comedy-drama starring Amrinder Gill.</p><span class="film-link">View on IMDb &rarr;</span></div>
+</a></div></div></section>
 
-<!-- GALLERY -->
-<section class="section section-warm" id="gallery">
-  <div class="section-inner" style="max-width:1200px">
-    <p class="section-label section-label-dark reveal">Gallery</p>
-    <h2 class="section-title reveal">Portfolio</h2>
-    <div class="gallery-grid">
-      <div class="gallery-item tall reveal" data-lb="0"><img src="images/gallery-1.jpg" alt="Traditional" loading="lazy"><div class="gallery-overlay"><span>Traditional</span></div></div>
-      <div class="gallery-item reveal" data-lb="1"><img src="images/gallery-2.jpg" alt="Elegant" loading="lazy"><div class="gallery-overlay"><span>Elegant</span></div></div>
-      <div class="gallery-item reveal" data-lb="2"><img src="images/gallery-3.jpg" alt="Vibrant" loading="lazy"><div class="gallery-overlay"><span>Vibrant</span></div></div>
-      <div class="gallery-item tall reveal" data-lb="3"><img src="images/gallery-4.jpg" alt="Fashion" loading="lazy"><div class="gallery-overlay"><span>Fashion</span></div></div>
-      <div class="gallery-item reveal" data-lb="4"><img src="images/gallery-5.jpg" alt="Editorial" loading="lazy"><div class="gallery-overlay"><span>Editorial</span></div></div>
-      <div class="gallery-item reveal" data-lb="5"><img src="images/gallery-6.jpg" alt="Casual" loading="lazy"><div class="gallery-overlay"><span>Casual</span></div></div>
-      <div class="gallery-item reveal" data-lb="6"><img src="images/gallery-7.jpg" alt="Contemporary" loading="lazy"><div class="gallery-overlay"><span>Contemporary</span></div></div>
-      <div class="gallery-item reveal" data-lb="7"><img src="images/gallery-8.jpg" alt="Dynamic" loading="lazy"><div class="gallery-overlay"><span>Dynamic</span></div></div>
-    </div>
-  </div>
-</section>
+<section class="section section-warm" id="gallery"><div class="section-inner" style="max-width:1200px">
+<p class="section-label section-label-dark reveal">Gallery</p>
+<h2 class="section-title reveal">Portfolio</h2>
+<div class="gallery-grid">
+<div class="gallery-item tall img-reveal" data-lb="0"><img src="images/gallery-1.jpg" alt="Traditional"><div class="gallery-overlay"><span>Traditional</span></div></div>
+<div class="gallery-item img-reveal" data-lb="1" style="transition-delay:.05s"><img src="images/gallery-2.jpg" alt="Elegant"><div class="gallery-overlay"><span>Elegant</span></div></div>
+<div class="gallery-item img-reveal" data-lb="2" style="transition-delay:.1s"><img src="images/gallery-3.jpg" alt="Vibrant"><div class="gallery-overlay"><span>Vibrant</span></div></div>
+<div class="gallery-item tall img-reveal" data-lb="3" style="transition-delay:.15s"><img src="images/gallery-4.jpg" alt="Fashion"><div class="gallery-overlay"><span>Fashion</span></div></div>
+<div class="gallery-item img-reveal" data-lb="4" style="transition-delay:.2s"><img src="images/gallery-5.jpg" alt="Editorial"><div class="gallery-overlay"><span>Editorial</span></div></div>
+<div class="gallery-item img-reveal" data-lb="5" style="transition-delay:.25s"><img src="images/gallery-6.jpg" alt="Casual"><div class="gallery-overlay"><span>Casual</span></div></div>
+<div class="gallery-item img-reveal" data-lb="6" style="transition-delay:.3s"><img src="images/gallery-7.jpg" alt="Contemporary"><div class="gallery-overlay"><span>Contemporary</span></div></div>
+<div class="gallery-item img-reveal" data-lb="7" style="transition-delay:.35s"><img src="images/gallery-8.jpg" alt="Dynamic"><div class="gallery-overlay"><span>Dynamic</span></div></div>
+</div></div></section>
 
-<!-- CONTACT -->
-<section class="section section-dark contact" id="contact">
-  <div class="section-inner">
-    <p class="section-label section-label-dark reveal">Get in touch</p>
-    <h2 class="section-title reveal">Let's <em>connect</em></h2>
-    <p class="reveal" style="color:var(--text-muted);font-size:16px;margin-bottom:6px">workartspace28@gmail.com</p>
-    <p class="reveal" style="color:rgba(245,237,228,0.22);font-size:13px">Vancouver, Canada</p>
-    <div class="contact-socials reveal" style="transition-delay:.1s">
-      <a href="https://www.instagram.com/pinnusekhon/" target="_blank" class="contact-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>Instagram</a>
-      <a href="https://www.tiktok.com/@pinnusekhon" target="_blank" class="contact-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.46V13a8.28 8.28 0 005.58 2.17V11.7a4.85 4.85 0 01-3.58-1.42V6.69h3.58z"/></svg>TikTok</a>
-      <a href="https://www.imdb.com/name/nm16417024/" target="_blank" class="contact-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h2v16H3V4zm4 0h3l1.5 8L13 4h3v16h-2.5v-10l-1.5 7h-2l-1.5-7v10H7V4zm11 0h3v16h-3V4z"/></svg>IMDb</a>
-      <a href="mailto:workartspace28@gmail.com" class="contact-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 7 10-7"/></svg>Email</a>
-    </div>
-    <div class="footer reveal"><p>&copy; 2025 Pinnu Sekhon. All rights reserved.</p></div>
-  </div>
-</section>
+<section class="section section-dark contact" id="contact"><div class="section-inner">
+<p class="section-label section-label-dark reveal">Get in touch</p>
+<h2 class="section-title reveal">Let's <em>connect</em></h2>
+<p class="reveal" style="color:var(--text-muted);font-size:16px;margin-bottom:6px"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5b2c3429303a292f282b3a383e69631b3c363a323775383436">[email&#160;protected]</a></p>
+<p class="reveal" style="color:rgba(245,237,228,0.22);font-size:13px">Vancouver, Canada</p>
+<div class="contact-socials reveal" style="transition-delay:.1s">
+<a href="https://www.instagram.com/pinnusekhon/" target="_blank" class="contact-btn magnetic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>Instagram</a>
+<a href="https://www.tiktok.com/@pinnusekhon" target="_blank" class="contact-btn magnetic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.46V13a8.28 8.28 0 005.58 2.17V11.7a4.85 4.85 0 01-3.58-1.42V6.69h3.58z"/></svg>TikTok</a>
+<a href="https://www.imdb.com/name/nm16417024/" target="_blank" class="contact-btn magnetic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 4h2v16H3V4zm4 0h3l1.5 8L13 4h3v16h-2.5v-10l-1.5 7h-2l-1.5-7v10H7V4zm11 0h3v16h-3V4z"/></svg>IMDb</a>
+<a href="/cdn-cgi/l/email-protection#c7b0a8b5aca6b5b3b4b7a6a4a2f5ff87a0aaa6aeabe9a4a8aa" class="contact-btn magnetic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 7 10-7"/></svg>Email</a>
+</div>
+<div class="footer reveal"><p>&copy; 2025 Pinnu Sekhon. All rights reserved.</p></div>
+</div></section>
 
 <script>
-// Preloader - dismiss after 2.5s OR on click, whichever comes first
-(function() {
-  var p = document.getElementById('preloader');
-  var dismissed = false;
-  function dismiss() {
-    if (dismissed) return;
-    dismissed = true;
-    p.classList.add('done');
-  }
-  setTimeout(dismiss, 2500);
-  p.addEventListener('click', dismiss);
-  // Failsafe - always dismiss by 5s no matter what
-  setTimeout(dismiss, 5000);
-})();
-
-// Nav scroll effect
-window.addEventListener('scroll', function() {
-  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
-});
-
-// Scroll reveal
-var observer = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
-
-// Lightbox
-(function() {
-  var lb = document.getElementById('lightbox');
-  var lbImg = document.getElementById('lb-img');
-  var items = document.querySelectorAll('[data-lb]');
-  var srcs = [];
-  var current = 0;
-
-  items.forEach(function(el) {
-    srcs.push(el.querySelector('img').src);
-    el.addEventListener('click', function() {
-      current = parseInt(el.getAttribute('data-lb'));
-      lbImg.src = srcs[current];
-      lb.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
-  });
-
-  document.getElementById('lb-close').addEventListener('click', closeLb);
-  lb.addEventListener('click', function(e) { if (e.target === lb) closeLb(); });
-  document.getElementById('lb-prev').addEventListener('click', function() {
-    current = (current - 1 + srcs.length) % srcs.length; lbImg.src = srcs[current];
-  });
-  document.getElementById('lb-next').addEventListener('click', function() {
-    current = (current + 1) % srcs.length; lbImg.src = srcs[current];
-  });
-  document.addEventListener('keydown', function(e) {
-    if (!lb.classList.contains('active')) return;
-    if (e.key === 'Escape') closeLb();
-    if (e.key === 'ArrowLeft') { current = (current - 1 + srcs.length) % srcs.length; lbImg.src = srcs[current]; }
-    if (e.key === 'ArrowRight') { current = (current + 1) % srcs.length; lbImg.src = srcs[current]; }
-  });
-  function closeLb() { lb.classList.remove('active'); document.body.style.overflow = ''; }
-})();
-
-// Smooth scroll for nav links
-document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-  a.addEventListener('click', function(e) {
-    e.preventDefault();
-    var target = document.querySelector(a.getAttribute('href'));
-    if (target) target.scrollIntoView({ behavior: 'smooth' });
-  });
-});
+(function(){var p=document.getElementById('preloader');document.body.style.overflow='hidden';setTimeout(function(){p.classList.add('done');document.body.style.overflow=''},2500)})();
+(function(){var dot=document.getElementById('cursorDot');var hov='a,button,.gallery-item,.film-card,.discipline,.magnetic,.hero-socials a,.contact-btn,.nav-brand';var cx=-100,cy=-100,dx=-100,dy=-100;document.addEventListener('mousemove',function(e){cx=e.clientX;cy=e.clientY;if(!dot.classList.contains('visible'))dot.classList.add('visible')});document.addEventListener('mousedown',function(){dot.classList.add('click')});document.addEventListener('mouseup',function(){dot.classList.remove('click')});document.addEventListener('mouseleave',function(){dot.classList.remove('visible')});document.addEventListener('mouseover',function(e){if(e.target.closest(hov))dot.classList.add('hover')});document.addEventListener('mouseout',function(e){if(e.target.closest(hov))dot.classList.remove('hover')});function tick(){dx+=(cx-dx)*0.18;dy+=(cy-dy)*0.18;dot.style.left=dx+'px';dot.style.top=dy+'px';requestAnimationFrame(tick)}tick();document.addEventListener('touchstart',function(){dot.style.display='none';document.body.style.cursor='auto'},{once:true})})();
+(function(){var canvas=document.getElementById('butterfly-canvas');var ctx=canvas.getContext('2d');var W,H;function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}resize();window.addEventListener('resize',resize);var COLORS=[['#B76E79','#D4A0A7'],['#D4A0A7','#F0D5D1'],['#C9A96E','#E2CFA3'],['#E8C4C4','#F5EDE4'],['#dba4ab','#eec8cd']];var butterflies=[];var mx=-200,my=-200,lastMx=0,lastMy=0,speed=0;function drawWing(c,side,wo,s){var d=side==='left'?-1:1;var w=wo*s,h=s;c.beginPath();c.moveTo(0,0);c.bezierCurveTo(d*w*0.3,-h*0.6,d*w*1.0,-h*0.8,d*w*0.8,-h*0.15);c.bezierCurveTo(d*w*0.95,0,d*w*0.9,h*0.1,d*w*0.7,h*0.2);c.bezierCurveTo(d*w*0.85,h*0.55,d*w*0.5,h*0.75,0,h*0.25);c.closePath()}function Butterfly(x,y){this.x=x+(Math.random()-0.5)*30;this.y=y+(Math.random()-0.5)*30;this.size=10+Math.random()*14;var cp=COLORS[Math.floor(Math.random()*COLORS.length)];this.c1=cp[0];this.c2=cp[1];this.life=1;this.decay=0.003+Math.random()*0.004;this.vx=(Math.random()-0.5)*2;this.vy=-0.5-Math.random()*1.5;this.wp=Math.random()*Math.PI*2;this.ws=0.1+Math.random()*0.07;this.wobble=Math.random()*Math.PI*2;this.angle=(Math.random()-0.5)*0.4}Butterfly.prototype.update=function(){this.life-=this.decay;this.wp+=this.ws;this.wobble+=0.02;this.vx+=Math.sin(this.wobble)*0.03;this.vy-=0.005;this.x+=this.vx;this.y+=this.vy;this.angle+=Math.sin(this.wobble)*0.006};Butterfly.prototype.draw=function(){if(this.life<=0)return;var s=this.size,wo=0.3+Math.abs(Math.sin(this.wp))*0.7;ctx.save();ctx.globalAlpha=this.life*0.75;ctx.translate(this.x,this.y);ctx.rotate(this.angle);ctx.fillStyle=this.c1;drawWing(ctx,'left',wo,s);ctx.fill();ctx.strokeStyle='rgba(255,255,255,0.15)';ctx.lineWidth=0.6;drawWing(ctx,'left',wo,s);ctx.stroke();ctx.fillStyle=this.c1;drawWing(ctx,'right',wo,s);ctx.fill();ctx.strokeStyle='rgba(255,255,255,0.15)';drawWing(ctx,'right',wo,s);ctx.stroke();ctx.fillStyle=this.c2;ctx.globalAlpha*=0.6;ctx.beginPath();ctx.arc(-s*wo*0.5,-s*0.3,s*0.1,0,Math.PI*2);ctx.arc(s*wo*0.5,-s*0.3,s*0.1,0,Math.PI*2);ctx.fill();ctx.globalAlpha/=0.6;ctx.fillStyle='rgba(50,25,30,0.8)';ctx.beginPath();ctx.ellipse(0,s*0.05,s*0.07,s*0.3,0,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(0,-s*0.26,s*0.08,0,Math.PI*2);ctx.fill();ctx.strokeStyle='rgba(50,25,30,0.6)';ctx.lineWidth=0.8;ctx.beginPath();ctx.moveTo(0,-s*0.3);ctx.quadraticCurveTo(-s*0.15,-s*0.55,-s*wo*0.25,-s*0.6);ctx.stroke();ctx.beginPath();ctx.moveTo(0,-s*0.3);ctx.quadraticCurveTo(s*0.15,-s*0.55,s*wo*0.25,-s*0.6);ctx.stroke();ctx.fillStyle='rgba(50,25,30,0.5)';ctx.beginPath();ctx.arc(-s*wo*0.25,-s*0.6,s*0.04,0,Math.PI*2);ctx.arc(s*wo*0.25,-s*0.6,s*0.04,0,Math.PI*2);ctx.fill();ctx.restore()};function spawnAt(x,y,n){for(var i=0;i<n;i++)if(butterflies.length<50)butterflies.push(new Butterfly(x,y))}document.addEventListener('mousemove',function(e){speed=Math.hypot(e.clientX-lastMx,e.clientY-lastMy);lastMx=mx=e.clientX;lastMy=my=e.clientY;if(speed>3)spawnAt(mx,my,1)});document.addEventListener('click',function(e){spawnAt(e.clientX,e.clientY,4)});document.addEventListener('touchmove',function(e){var t=e.touches[0];mx=t.clientX;my=t.clientY;spawnAt(mx,my,1)},{passive:true});document.addEventListener('touchstart',function(e){var t=e.touches[0];spawnAt(t.clientX,t.clientY,3)},{passive:true});for(var i=0;i<6;i++){var b=new Butterfly(Math.random()*W,H*0.2+Math.random()*H*0.6);b.life=0.5+Math.random()*0.5;butterflies.push(b)}function animate(){ctx.clearRect(0,0,W,H);if(Math.random()<0.015&&butterflies.length<10)spawnAt(Math.random()*W,H*0.3+Math.random()*H*0.4,1);for(var i=butterflies.length-1;i>=0;i--){butterflies[i].update();butterflies[i].draw();if(butterflies[i].life<=0)butterflies.splice(i,1)}requestAnimationFrame(animate)}animate();window._butterflySpawn=spawnAt})();
+(function(){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.1});document.querySelectorAll('.reveal,.reveal-scale,.img-reveal').forEach(function(el){obs.observe(el)})})();
+window.addEventListener('scroll',function(){document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60)});
+window.addEventListener('scroll',function(){var s=window.scrollY,img=document.getElementById('hero-img');if(img&&s<window.innerHeight)img.style.transform='translateY('+(s*0.15)+'px) scale(1.02)'});
+document.querySelectorAll('.magnetic').forEach(function(el){el.addEventListener('mousemove',function(e){var r=el.getBoundingClientRect();el.style.transform='translate('+((e.clientX-r.left-r.width/2)*0.2)+'px,'+((e.clientY-r.top-r.height/2)*0.2)+'px)'});el.addEventListener('mouseleave',function(){el.style.transform=''})});
+document.querySelectorAll('[data-tilt]').forEach(function(card){card.addEventListener('mousemove',function(e){var r=card.getBoundingClientRect();var x=(e.clientX-r.left)/r.width-0.5,y=(e.clientY-r.top)/r.height-0.5;card.style.transform='perspective(800px) rotateY('+(x*8)+'deg) rotateX('+(-y*6)+'deg) translateY(-6px)'});card.addEventListener('mouseleave',function(){card.style.transform=''})});
+(function(){var lb=document.getElementById('lightbox'),lbImg=document.getElementById('lb-img');var items=document.querySelectorAll('[data-lb]'),srcs=[],current=0;items.forEach(function(el){srcs.push(el.querySelector('img').src)});items.forEach(function(item,i){item.addEventListener('click',function(){current=i;lbImg.src=srcs[current];lb.classList.add('active');document.body.style.overflow='hidden'})});document.getElementById('lb-close').addEventListener('click',function(){lb.classList.remove('active');document.body.style.overflow=''});document.getElementById('lb-prev').addEventListener('click',function(){current=(current-1+srcs.length)%srcs.length;lbImg.src=srcs[current]});document.getElementById('lb-next').addEventListener('click',function(){current=(current+1)%srcs.length;lbImg.src=srcs[current]});lb.addEventListener('click',function(e){if(e.target===lb){lb.classList.remove('active');document.body.style.overflow=''}});document.addEventListener('keydown',function(e){if(!lb.classList.contains('active'))return;if(e.key==='Escape'){lb.classList.remove('active');document.body.style.overflow=''}if(e.key==='ArrowLeft')document.getElementById('lb-prev').click();if(e.key==='ArrowRight')document.getElementById('lb-next').click()})})();
+(function(){if(window.innerWidth<900||'ontouchstart' in window)return;var sections=document.querySelectorAll('.hero,.section');var ci=0,scrolling=false;function scrollTo(idx){if(idx<0||idx>=sections.length||scrolling)return;scrolling=true;ci=idx;sections[idx].scrollIntoView({behavior:'smooth'});setTimeout(function(){scrolling=false},900)}function findCur(){var sy=window.scrollY+window.innerHeight*0.3;for(var i=sections.length-1;i>=0;i--)if(sections[i].offsetTop<=sy){ci=i;break}}window.addEventListener('wheel',function(e){if(document.getElementById('lightbox').classList.contains('active'))return;e.preventDefault();findCur();if(e.deltaY>30)scrollTo(ci+1);else if(e.deltaY<-30)scrollTo(ci-1)},{passive:false});document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();var t=document.querySelector(a.getAttribute('href'));if(t)for(var i=0;i<sections.length;i++)if(sections[i]===t||sections[i].contains(t)){scrollTo(i);break}})});})();
+(function(){var secret='pinnu',buffer='',colors=['#B76E79','#D4A0A7','#C9A96E','#F0D5D1','#E8C4C4','#dba4ab','#eec8cd'];document.addEventListener('keydown',function(e){if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;buffer+=e.key.toLowerCase();if(buffer.length>secret.length)buffer=buffer.slice(-secret.length);if(buffer===secret){buffer='';burst()}});function burst(){var cx=window.innerWidth/2,cy=window.innerHeight/2;if(window._butterflySpawn)for(var w=0;w<5;w++)setTimeout(function(){window._butterflySpawn(cx,cy,10)},w*100);for(var i=0;i<30;i++){var el=document.createElement('div');el.className='burst-butterfly';var a=(Math.PI*2*i)/30+(Math.random()-0.5)*0.5;var dist=200+Math.random()*400;var bx=Math.cos(a)*dist,by=Math.sin(a)*dist-200;var rot=(Math.random()-0.5)*720;var colors=['#B76E79','#D4A0A7','#C9A96E','#F0D5D1','#E8C4C4','#dba4ab','#eec8cd'];var col=colors[Math.floor(Math.random()*colors.length)];var sz=16+Math.random()*20;el.style.cssText='left:'+cx+'px;top:'+cy+'px;--bx:'+bx+'px;--by:'+by+'px;--br:'+rot+'deg;animation-duration:'+(2+Math.random())+'s;animation-delay:'+(Math.random()*0.3)+'s';el.innerHTML='<svg width="'+sz+'" height="'+sz+'" viewBox="0 0 40 40"><path d="M20 20 C15 10,2 5,5 18 C2 25,10 30,20 25 Z" fill="'+col+'" opacity="0.8"/><path d="M20 20 C25 10,38 5,35 18 C38 25,30 30,20 25 Z" fill="'+col+'" opacity="0.8"/><ellipse cx="20" cy="21" rx="1.5" ry="5" fill="rgba(50,25,30,0.6)"/></svg>';document.body.appendChild(el);(function(elem){setTimeout(function(){if(elem.parentNode)elem.parentNode.removeChild(elem)},3500)})(el)}}})();
 </script>
 </body>
 </html>
